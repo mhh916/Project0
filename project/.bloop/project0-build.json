@@ -2,15 +2,15 @@
     "version": "1.4.0",
     "project": {
         "name": "project0-build",
-        "directory": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project",
-        "workspaceDir": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project",
+        "directory": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project",
+        "workspaceDir": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project",
         "sources": [
-            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\src\\main\\scala",
-            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\src\\main\\scala-2.12",
-            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\src\\main\\scala-2",
-            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\src\\main\\java",
-            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\src\\main\\scala-sbt-1.0",
-            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\target\\scala-2.12\\sbt-1.0\\src_managed\\main"
+            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\src\\main\\scala",
+            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\src\\main\\scala-2.12",
+            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\src\\main\\scala-2",
+            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\src\\main\\java",
+            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\src\\main\\scala-sbt-1.0",
+            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\target\\scala-2.12\\sbt-1.0\\src_managed\\main"
         ],
         "dependencies": [
             
@@ -105,11 +105,11 @@
             "C:\\Users\\M1\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\com\\squareup\\okio\\okio\\1.17.2\\okio-1.17.2.jar",
             "C:\\Users\\M1\\AppData\\Local\\Coursier\\Cache\\v1\\https\\repo1.maven.org\\maven2\\com\\typesafe\\config\\1.3.3\\config-1.3.3.jar"
         ],
-        "out": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\.bloop\\project0-build",
-        "classesDir": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\.bloop\\project0-build\\scala-2.12\\sbt-1.0\\classes",
+        "out": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\.bloop\\project0-build",
+        "classesDir": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\.bloop\\project0-build\\scala-2.12\\sbt-1.0\\classes",
         "resources": [
-            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\src\\main\\resources",
-            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\target\\scala-2.12\\sbt-1.0\\resource_managed\\main"
+            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\src\\main\\resources",
+            "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\target\\scala-2.12\\sbt-1.0\\resource_managed\\main"
         ],
         "scala": {
             "organization": "org.scala-lang",
@@ -126,7 +126,7 @@
                 "C:\\Users\\M1\\.sbt\\boot\\scala-2.12.14\\lib\\scala-reflect.jar",
                 "C:\\Users\\M1\\.sbt\\boot\\scala-2.12.14\\lib\\scala-xml_2.12-1.0.6.jar"
             ],
-            "analysis": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project\\target\\streams\\compile\\bloopAnalysisOut\\_global\\streams\\inc_compile_2.12.zip",
+            "analysis": "C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project\\target\\streams\\compile\\bloopAnalysisOut\\_global\\streams\\inc_compile_2.12.zip",
             "setup": {
                 "order": "mixed",
                 "addLibraryToBootClasspath": true,
@@ -201,7 +201,7 @@
             "config": {
                 "home": "C:\\Program Files (x86)\\Java\\jre1.8.0_221",
                 "options": [
-                    "-Duser.dir=C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project0\\project0\\project"
+                    "-Duser.dir=C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project"
                 ]
             },
             "mainClass": [
