@@ -1,0 +1,13 @@
+[0m2021.10.08 16:52:48 INFO  Started: Metals version 0.10.7 in workspace 'C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project0\project0' for client Visual Studio Code 1.61.0.[0m
+[0m2021.10.08 16:52:49 INFO  time: initialize in 0.89s[0m
+[0m2021.10.08 16:52:49 WARN  Build server is not auto-connectable.[0m
+[0m2021.10.08 16:52:57 INFO  running 'C:\Program Files (x86)\Java\jre1.8.0_221\bin\java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -jar C:\Users\M1\AppData\Local\Temp\metals4120290170315120102\sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'[0m
+[0m2021.10.08 16:52:58 INFO  [info] welcome to sbt 1.5.5 (Oracle Corporation Java 1.8.0_221)[0m
+[0m2021.10.08 16:53:00 INFO  [info] loading settings for project project0-build-build from metals.sbt ...[0m
+[0m2021.10.08 16:53:00 INFO  [info] loading project definition from C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project0\project0\project\project[0m
+[0m2021.10.08 16:53:03 INFO  [info] loading settings for project project0-build from metals.sbt ...[0m
+[0m2021.10.08 16:53:03 INFO  [info] loading project definition from C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project0\project0\project[0m
+[0m2021.10.08 16:53:05 INFO  [success] Generated .bloop\project0-build.json[0m
+[0m2021.10.08 16:53:05 INFO  [success] Total time: 2 s, completed Oct 8, 2021 4:53:05 PM[0m
+[0m2021.10.08 16:53:06 INFO  [info] loading settings for project project0 from build.sbt ...[0m
+[0m2021.10.08 16:53:06 INFO  [info] set current project to hello-world (in build file:/C:/Users/M1/Desktop/Work/Rev/Scala%20Big%20Data/Scala%20Code/Project0/project0/)[0m
