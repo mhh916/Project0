@@ -8,3 +8,4 @@
 [0m[[0m[0mdebug[0m] [0m[0munmatched Done event for requestId None: None[0m
 [0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
 [0m[[0m[0mdebug[0m] [0m[0mUnhandled notification received: $/setTraceNotification: JsonRpcNotificationMessage(2.0, $/setTraceNotification, {"value":"off"})[0m
+[0m[[0m[0mdebug[0m] [0m[0mUnhandled notification received: textDocument/didOpen: JsonRpcNotificationMessage(2.0, textDocument/didOpen, {"textDocument":{"uri":"file:///c%3A/Users/M1/Desktop/Work/Rev/Scala%20Big%20Data/Scala%20Code/Project/Project0/src/main/scala/Main.scala","languageId":"scala","version":1,"text":"object Main extends App {\r\n  println(\"Hello, World!\")\r\n}"}})[0m
