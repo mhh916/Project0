@@ -199,7 +199,7 @@
         "platform": {
             "name": "jvm",
             "config": {
-                "home": "C:\\Program Files (x86)\\Java\\jre1.8.0_221",
+                "home": "C:\\Program Files\\Java\\jre1.8.0_221",
                 "options": [
                     "-Duser.dir=C:\\Users\\M1\\Desktop\\Work\\Rev\\Scala Big Data\\Scala Code\\Project\\Project0\\project"
                 ]
