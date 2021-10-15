@@ -9,20 +9,17 @@ object Main {
   def main(args: Array[String]): Unit = {
     var loop = true
     val hotel = new Hotel()
+    val db = new DBConnect()
     
-    println()
-    println("Welcome to Venom Corporation's Hotel Management System")
-    var manager = readLine("Insert Username: ")
-    println()
-    
-    var db = new DBConnect(manager)
-    db.connect()
-    println(s"Welcome $manager, please select an option")
+    Thread.sleep(100)
 
       
     do{
-      
-      println("1. Check-in\n2. Check-out\n3. Charge Client\n4. View Guest List\n5. Group Register\n6. Export Guest List\n7. Log-Out\n8. Quit Application")
+      println()
+      println("Welcome to Venom Corporation's Hotel Management System")
+      println()
+      println("Welcome, please select an option")
+      println("1. Check-in\n2. Check-out\n3. Charge Client\n4. Check Available Rooms\n5. Group Register\n6. Export Guest List\n7. View Guest List\n8. Quit Application")
       
       try {
       val option = readInt()
@@ -32,10 +29,12 @@ object Main {
           // Generates values based on user input
           val id = readLine("Insert Customer ID: ")
           val date = readLine("Insert Date: ")
+          val nights = readLine("Insert Amount of Nights: ")
           val room = readLine("Insert Room Number: ")
           
           // Passes values as parameters to checkIn function
-          hotel.checkIn(room.toInt, id.toInt, date, db.getBookings())
+          hotel.checkIn(room.toInt, id.toInt, date, nights.toInt, db.getBookings(),db.getRooms())
+          Thread.sleep(100)
         
         }
 
@@ -69,14 +68,6 @@ object Main {
         }
 
         case 7 => {
-          db.disconnect()
-          Thread.sleep(500)
-          println("Welcome to Venom Corporation's Hotel Management System")
-          manager = readLine("Insert Username: ")
-          println()
-          println(s"Welcome $manager, please select an option")
-          db = new DBConnect(manager)
-          db.connect()
           
         }  
         

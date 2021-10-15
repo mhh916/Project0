@@ -5,21 +5,29 @@ import org.mongodb.scala._
 import help.Helpers._
 import org.mongodb.scala.model.Filters._
 import org.mongodb.scala.model.Updates._
+import org.mongodb.scala.model.Projections._
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent._
+import scala.concurrent.duration._
+import scala.language.postfixOps
+import org.mongodb.scala.model.Aggregates._
+
 
 class Hotel() {
   var total = 1
 
   // Uses parameters to create a document and import into the collection provided in parameters(collection)
-  def checkIn(room: Int, customerID: Int, bookingDate: String, collection: MongoCollection[Document]): Unit = {
+  def checkIn(room: Int, customerID: Int, bookingDate: String,  nights: Int, bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
     // Creates document based on input parameters
     val doc: Document = Document(
       "roomId" -> room,
       "customerId" -> customerID,
-      "bookingDate" -> bookingDate
+      "bookingDate" -> bookingDate,
+      "totalCharge" -> checkInHelper(room, nights, roomCollection)
     )
     
     // Creates observable while inserting document into the collection
-    val observable: Observable[Completed] = collection.insertOne(doc)
+    val observable: Observable[Completed] = bookingCollection.insertOne(doc)
         observable.subscribe(new Observer[Completed] {
             override def onNext(result: Completed): Unit = println("Adding Guest")
             override def onError(e: Throwable): Unit = println("Failed")
@@ -27,16 +35,30 @@ class Hotel() {
         })
     
     // Update room to be occupied
-    collection.updateOne(equal("roomNumber", room), set("occupied", true)).printHeadResult("Updating Room to Occupied\n")
-    
+    roomCollection.updateOne(equal("roomNumber", room), set("occupied", true))
+ 
   }
 
   def checkOut(): Unit = {
     
   }
 
+  def checkInHelper(room: Int, nights: Int, roomCollection: MongoCollection[Document]): Int = {
+    room match {
+        case room if room > 250 => 300 * nights
+        case room if room > 150 => 200 * nights
+        case room if room > 100 => 100 * nights
+    }
+   
+     
+  }
+
   def chargeGuest(charge: Double): Unit = {
     //total += charge
+  }
+
+  def checkRooms(roomCollection: MongoCollection[Document]): Unit = {
+
   }
 
   def importBookings(bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {

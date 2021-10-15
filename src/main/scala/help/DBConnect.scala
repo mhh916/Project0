@@ -4,7 +4,7 @@ import scala.io.StdIn._
 import org.mongodb.scala._
 import help.Helpers._
 
-class DBConnect(user: String) {
+class DBConnect() {
   val client: MongoClient = MongoClient()
   val database: MongoDatabase = client.getDatabase("test")
   val rooms: MongoCollection[Document] = database.getCollection("room")
@@ -31,14 +31,6 @@ class DBConnect(user: String) {
     client
   }
 
-  def disconnect(): Unit = {
-    println("Logout Successfull")
-    println()
-    Thread.sleep(1001)
-  }
 
-  def connect(): Unit = {
-
-  }
 
 }
