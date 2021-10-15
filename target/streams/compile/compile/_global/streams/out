@@ -1,4 +1,4 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\src\main\scala\Main.scala:77:7: illegal start of simple expression[0m
-[0m[[0m[31merror[0m] [0m[0m      }[0m
-[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\src\main\scala\help\hotel.scala:30:5: not found: value roomCollection[0m
+[0m[[0m[31merror[0m] [0m[0m    roomCollection.updateOne(equal("roomNumber", room), set("occupied", true)).printHeadResult("Updating Room to Occupied\n")[0m
+[0m[[0m[31merror[0m] [0m[0m    ^[0m
 [0m[[0m[31merror[0m] [0m[0mone error found[0m
