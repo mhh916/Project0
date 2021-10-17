@@ -25,7 +25,7 @@ class Hotel() {
       "roomId" -> room,
       "customerId" -> customerID,
       "bookingDate" -> bookingDate,
-      "totalCharge" -> checkInHelper(room, nights)
+      "totalCharge" -> checkInHelper(room, nights, roomCollection)
     )
     
     // Creates observable while inserting document into the collection
@@ -48,13 +48,21 @@ class Hotel() {
     
   }
 
-  def checkInHelper(room: Int, nights: Int): Int = {
-    room match {
-        case room if room > 250 => 300 * nights
-        case room if room > 150 => 200 * nights
-        case room if room > 100 => 100 * nights
-    }  
-     
+  def checkInHelper(room: Int, nights: Int, roomCollection: MongoCollection[Document]): Int = {
+    var totalCharge: Int = 0
+    var price: Int = 0
+    var results = roomCollection.find(equal("roomNumber", room)).projection(fields(include("price"),excludeId())).results()
+    
+    for(result <- results) {
+        val jsonString = result.toJson()
+        println(jsonString)
+        val jValue = parse(jsonString)
+        val resultDoc = jValue.extract[Price]
+        price = resultDoc.price.toInt
+        totalCharge = nights * price
+    }
+    totalCharge
+
   }
 
   def chargeGuest(charge: Int, customerId: Int, bookingCollection: MongoCollection[Document]): Unit = {
