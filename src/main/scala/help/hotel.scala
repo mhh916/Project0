@@ -2,6 +2,7 @@ package help
 
 import scala.io.StdIn._
 import org.mongodb.scala._
+import org.mongodb.scala.model._
 import help.Helpers._
 import org.mongodb.scala.model.Filters._
 import org.mongodb.scala.model.Updates._
@@ -51,8 +52,9 @@ class Hotel() {
         val resultDoc = jValue.extract[RoomNum]
         roomNum = resultDoc.roomId
     }
-    bookingCollection.deleteOne(equal("customerId", customerID)).printHeadResult("Deleted: ")
-    roomCollection.updateOne(equal("roomNumber", roomNum), set("occupied", false)).printHeadResult("Updated: ")
+    bookingCollection.deleteOne(equal("customerId", customerID)).results()
+    roomCollection.updateOne(equal("roomNumber", roomNum), set("occupied", false)).results()
+    println("\nSuccessfully Checked Out\n")
 
 
 
@@ -82,7 +84,6 @@ class Hotel() {
     
     for(result <- results) {
         val jsonString = result.toJson()
-        println(jsonString)
         val jValue = parse(jsonString)
         val resultDoc = jValue.extract[Charge]
         current = resultDoc.totalCharge.toInt
@@ -93,7 +94,6 @@ class Hotel() {
   }
 
   def checkRooms(beds: Int, roomCollection: MongoCollection[Document]): Unit = {
-    //var results = roomCollection.find(and(equal("occupied", false),equal("beds", beds))).projection(fields(exclude("occupied"),excludeId())).printResults("Rooms: ")
     var results = roomCollection.find(and(equal("occupied", false),equal("beds", beds))).projection(fields(exclude("occupied"),excludeId())).results()
     for(result <- results) {
         val jsonString = result.toJson()
@@ -102,6 +102,7 @@ class Hotel() {
          println(s"Room Number: ${resultDoc.roomNumber}, Beds: ${resultDoc.beds}, Description: ${resultDoc.description}, Price: ${resultDoc.price}")
        
     }
+    println()
   }
 
   def importBookings(bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
@@ -124,12 +125,39 @@ class Hotel() {
   }
 
 
-  def viewGuestList(): Unit = {
+  def viewGuestList(bookingCollection: MongoCollection[Document], customerCollection: MongoCollection[Document]): Unit = {
+    var roomNum = 0
+    var customerId = 0
+    var results = bookingCollection.find().projection(fields(include("roomId"), include("customerId"),excludeId())).results()
+    println()
+    for(result <- results) {
+        val jsonString = result.toJson()
+        val jValue = parse(jsonString)
+        
+        val resultDoc = jValue.extract[Customer]
+        roomNum = resultDoc.roomId
+        customerId = resultDoc.customerId
+        var results2 = customerCollection.find(equal("customerId", customerId)).projection(fields(include("name"),excludeId())).results()
+            for(result2 <- results2){
+                val jsonString = result2.toJson()
+                val jValue = parse(parseJson(jsonString))
+                val resultDoc = jValue.extract[CustomerName]
+                println(s"Name: ${resultDoc.firstName} ${resultDoc.lastName}\n\t\t\tRoom: $roomNum    CustomerID: $customerId ")
+                
+            }
 
+
+    }
+    println()
   }
 
   def exportGuestList(): Unit = {
     
+  }
+
+  def parseJson(j: String): String = {
+    val l = j.length()
+    j.slice(8, l-1)
   }
 }
 case class Charge(totalCharge: Int)
@@ -138,3 +166,5 @@ case class Price(price: Int)
 
 case class RoomNum(roomId: Int)
 case class Rooms(roomNumber: Int, beds: Int, description: String, price: Int)
+case class Customer(roomId: Int, customerId: Int)
+case class CustomerName(firstName: String, lastName: String)

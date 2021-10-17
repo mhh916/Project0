@@ -29,7 +29,7 @@ object Main {
           val date = readLine("Insert Date: ")
           val nights = readLine("Insert Amount of Nights: ")
           val room = readLine("Insert Room Number: ")
-          
+          println()
           // Passes values as parameters to checkIn function
           hotel.checkIn(room.toInt, id.toInt, date, nights.toInt, db.getBookings(),db.getRooms())
           //Thread.sleep(100)
@@ -63,7 +63,7 @@ object Main {
         }
 
         case 7 => {
-          
+          hotel.viewGuestList(db.getBookings(), db.getCustomers())
         }  
         
         case 8 => {
