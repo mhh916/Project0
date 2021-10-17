@@ -34,11 +34,11 @@ class Hotel() {
         observable.subscribe(new Observer[Completed] {
             override def onNext(result: Completed): Unit = println("Adding Guest")
             override def onError(e: Throwable): Unit = println("Failed")
-            override def onComplete(): Unit = println(s"Successfully booked in Room $room ")
+            override def onComplete(): Unit = println(s"Successfully booked in Room $room \n")
         })
     
     // Update room to be occupied
-    roomCollection.updateOne(equal("roomNumber", room), set("occupied", true)).printHeadResult("Room set to Occupied")
+    roomCollection.updateOne(equal("roomNumber", room), set("occupied", true)).results()
 
   }
 
@@ -65,7 +65,6 @@ class Hotel() {
     
     for(result <- results) {
         val jsonString = result.toJson()
-        println(jsonString)
         val jValue = parse(jsonString)
         val resultDoc = jValue.extract[Price]
         price = resultDoc.price.toInt
@@ -93,10 +92,18 @@ class Hotel() {
 
   }
 
-  def checkRooms(roomCollection: MongoCollection[Document]): Unit = {
-
+  def checkRooms(beds: Int, roomCollection: MongoCollection[Document]): Unit = {
+    //var results = roomCollection.find(and(equal("occupied", false),equal("beds", beds))).projection(fields(exclude("occupied"),excludeId())).printResults("Rooms: ")
+    var results = roomCollection.find(and(equal("occupied", false),equal("beds", beds))).projection(fields(exclude("occupied"),excludeId())).results()
+    for(result <- results) {
+        val jsonString = result.toJson()
+        val jValue = parse(jsonString)
+        val resultDoc = jValue.extract[Rooms]
+         println(s"Room Number: ${resultDoc.roomNumber}, Beds: ${resultDoc.beds}, Description: ${resultDoc.description}, Price: ${resultDoc.price}")
+       
+    }
   }
-//work on import
+
   def importBookings(bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
     //println("RoomId, customerId, bookingDate, nights")
     val bs = io.Source.fromFile("C:/Users/M1/Desktop/Work/Rev/Scala Big Data/Scala Code/Project/Project0/src/main/scala/sample.csv")
@@ -130,3 +137,4 @@ case class Charge(totalCharge: Int)
 case class Price(price: Int)
 
 case class RoomNum(roomId: Int)
+case class Rooms(roomNumber: Int, beds: Int, description: String, price: Int)

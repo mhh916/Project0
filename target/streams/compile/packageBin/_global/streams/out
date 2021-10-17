@@ -1,0 +1,41 @@
+[0m[[0m[0mdebug[0m] [0m[0mPackaging C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\hello-world_2.13-1.0.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Charge$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Charge$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Charge.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Charge.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\DBConnect.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\DBConnect.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Helpers$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Helpers$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Helpers$DocumentObservable.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Helpers$DocumentObservable.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Helpers$GenericObservable.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Helpers$GenericObservable.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Helpers$ImplicitObservable.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Helpers$ImplicitObservable.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Helpers.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Helpers.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Hotel$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Hotel$$anon$1.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Hotel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Hotel.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Price$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Price$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Price.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Price.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\RoomNum$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\RoomNum$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\RoomNum.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\RoomNum.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Rooms$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Rooms$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	help\Rooms.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\help\Rooms.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes\Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0mDone packaging.[0m

@@ -4,32 +4,41 @@ import scala.io.StdIn._
 import org.mongodb.scala._
 import help.Helpers._
 
+
 class DBConnect() {
-  val client: MongoClient = MongoClient()
-  val database: MongoDatabase = client.getDatabase("test")
-  val rooms: MongoCollection[Document] = database.getCollection("room")
-  val bookings: MongoCollection[Document] = database.getCollection("bookings")
-  val customers: MongoCollection[Document] = database.getCollection("customers")
-  
-  def getRooms(): MongoCollection[Document] = {
-    rooms
-  }
+    val client: MongoClient = MongoClient()
+    val database: MongoDatabase = client.getDatabase("test")
+    val rooms: MongoCollection[Document] = database.getCollection("room")
+    val bookings: MongoCollection[Document] = database.getCollection("bookings")
+    val customers: MongoCollection[Document] = database.getCollection("customers")
+    Thread.sleep(100)
+    println()
+    println("Welcome to Venom Corporation's Hotel Management System")
+    println()
 
-  def getBookings(): MongoCollection[Document] = {
-    bookings
-  }
+    def getRooms(): MongoCollection[Document] = {
+        rooms
+    }
 
-  def getCustomers(): MongoCollection[Document] = {
-    customers
-  }
+    def getBookings(): MongoCollection[Document] = {
+        bookings
+    }
 
-  def getDatabase(): MongoDatabase = {
-    database
-  }
+    def getCustomers(): MongoCollection[Document] = {
+        customers
+    }
 
-  def getClient(): MongoClient = {
-    client
-  }
+    def getDatabase(): MongoDatabase = {
+        database
+    }
+
+    def getClient(): MongoClient = {
+        client
+    }
+    def disconnect(): Unit = {
+        client.close()
+        println("Closing database connection...\n ")
+    }
 
 
 

@@ -11,14 +11,12 @@ object Main {
     val hotel = new Hotel()
     val db = new DBConnect()
     
-    Thread.sleep(100)
+    
 
       
     do{
-      println()
-      println("Welcome to Venom Corporation's Hotel Management System")
-      println()
-      println("Welcome, please select an option")
+      
+      println("Please select an option")
       println("1. Check-in\n2. Check-out\n3. Charge Client\n4. Check Available Rooms\n5. Group Register\n6. Export Guest List\n7. View Guest List\n8. Quit Application")
       
       try {
@@ -34,7 +32,7 @@ object Main {
           
           // Passes values as parameters to checkIn function
           hotel.checkIn(room.toInt, id.toInt, date, nights.toInt, db.getBookings(),db.getRooms())
-          Thread.sleep(100)
+          //Thread.sleep(100)
         
         }
 
@@ -50,9 +48,8 @@ object Main {
         }
 
         case 4 => {
-          println("Not yet implemented")
-          println()
-          Thread.sleep(500)
+          val beds = readLine("Would you like 1 or 2 beds?: ")
+          hotel.checkRooms(beds.toInt, db.getRooms())
         }
 
          case 5 => {
@@ -69,8 +66,10 @@ object Main {
           
         }  
         
-        case 8 => loop = false
-        
+        case 8 => {
+          db.disconnect()
+          loop = false
+        }
       }
       }catch {
         case e: MatchError => println("Please pick a number between 1~8\n")
