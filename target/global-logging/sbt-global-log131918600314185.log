@@ -1,0 +1,12 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(compile, Some(9379f805-44d7-42ba-bddd-49a63229e868), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / compile[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: bloop.integrations.sbt.Offloader$$anon$1@720c0996, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to C:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\target\scala-2.13\classes ...[0m
+[0m[[0m[33mwarn[0m] [0m[0mC:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\src\main\scala\help\hotel.scala:76:97: Auto-application to `()` is deprecated. Supply the empty argument list `()` explicitly to invoke method results,[0m
+[0m[[0m[33mwarn[0m] [0m[0mor remove the empty argument list from its definition (Java-defined methods are exempt).[0m
+[0m[[0m[33mwarn[0m] [0m[0mIn Scala 3, an unapplied method like this will be eta-expanded into a function.[0m
+[0m[[0m[33mwarn[0m] [0m[0m    bookingCollection.updateOne(equal("customerId", customerId), set("totalCharge", newCharge)).results[0m
+[0m[[0m[33mwarn[0m] [0m[0m                                                                                                ^[0m
+[0m[[0m[33mwarn[0m] [0m[0mone warning found[0m
+[0m[[0m[32msuccess[0m] [0m[0mTotal time: 0 s, completed Oct 17, 2021 12:50:42 PM[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

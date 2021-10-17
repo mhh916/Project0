@@ -42,13 +42,13 @@ object Main {
           val id = readLine("Insert Customer ID: ")
           val date = readLine("Insert Date: ")
 
-          hotel.checkOut()
+          hotel.checkOut(id.toInt, db.getBookings(), db.getRooms())
         }
 
         case 3 => {
-          println("Not yet implemented")
-          println()
-          Thread.sleep(500)
+          val charge = readLine("Insert Charge Amount: ")
+          val id = readLine("Insert Customer ID: ")
+          hotel.chargeGuest(charge.toInt, id.toInt, db.getBookings())
         }
 
         case 4 => {

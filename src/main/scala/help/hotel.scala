@@ -11,9 +11,11 @@ import scala.concurrent._
 import scala.concurrent.duration._
 import scala.language.postfixOps
 import org.mongodb.scala.model.Aggregates._
+import net.liftweb.json._
 
 
 class Hotel() {
+  implicit val formats = DefaultFormats
   var total = 1
 
   // Uses parameters to create a document and import into the collection provided in parameters(collection)
@@ -23,7 +25,7 @@ class Hotel() {
       "roomId" -> room,
       "customerId" -> customerID,
       "bookingDate" -> bookingDate,
-      "totalCharge" -> checkInHelper(room, nights, roomCollection)
+      "totalCharge" -> checkInHelper(room, nights)
     )
     
     // Creates observable while inserting document into the collection
@@ -36,25 +38,41 @@ class Hotel() {
     
     // Update room to be occupied
     roomCollection.updateOne(equal("roomNumber", room), set("occupied", true))
+
+   
+    
  
   }
 
-  def checkOut(): Unit = {
+  def checkOut(customerID: Int, bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
     
   }
 
-  def checkInHelper(room: Int, nights: Int, roomCollection: MongoCollection[Document]): Int = {
+  def checkInHelper(room: Int, nights: Int): Int = {
     room match {
         case room if room > 250 => 300 * nights
         case room if room > 150 => 200 * nights
         case room if room > 100 => 100 * nights
-    }
-   
+    }  
      
   }
 
-  def chargeGuest(charge: Double): Unit = {
-    //total += charge
+  def chargeGuest(charge: Int, customerId: Int, bookingCollection: MongoCollection[Document]): Unit = {
+    var current: Int = 0
+    var newCharge: Int = 0
+    
+    var results = bookingCollection.find(equal("customerId", customerId)).projection(fields(include("totalCharge"),excludeId())).results()
+    
+    for(result <- results) {
+        val jsonString = result.toJson()
+        println(jsonString)
+        val jValue = parse(jsonString)
+        val resultDoc = jValue.extract[Charge]
+        current = resultDoc.totalCharge.toInt
+        newCharge = current + charge
+    }
+    bookingCollection.updateOne(equal("customerId", customerId), set("totalCharge", newCharge)).results()
+
   }
 
   def checkRooms(roomCollection: MongoCollection[Document]): Unit = {
@@ -62,7 +80,7 @@ class Hotel() {
   }
 
   def importBookings(bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
-    //println("RoomId, customerId, bookingDate")
+    //println("RoomId, customerId, bookingDate, nights")
     val bs = io.Source.fromFile("C:/Users/M1/Desktop/Work/Rev/Scala Big Data/Scala Code/Project/Project0/src/main/scala/sample.csv")
     for (line <- bs.getLines()) {
         val cols = line.split(",").map(_.trim)
@@ -72,7 +90,9 @@ class Hotel() {
         val doc: Document = Document(
           "roomId" -> cols(0),
           "customerId" -> cols(1),
-          "bookingDate" -> cols(2)
+          "bookingDate" -> cols(2),
+          "nights" -> cols(3)
+          //"totalCharge" -> checkInHelper(cols(0), cols(4))
         )
         //add booking to database
         val observable: Observable[Completed] = bookingCollection.insertOne(doc)
@@ -95,3 +115,7 @@ class Hotel() {
     println()
   }
 }
+
+case class Charge(totalCharge: Int)
+
+case class Price(price: Int)

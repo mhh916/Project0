@@ -27,6 +27,7 @@ version := "1.0"
 
 libraryDependencies += "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2"
 libraryDependencies += "org.mongodb.scala" %% "mongo-scala-driver" % "2.8.0"
+libraryDependencies += "net.liftweb" %% "lift-json" % "3.5.0"
 
 scalacOptions += "-deprecation"
 // Here, `libraryDependencies` is a set of dependencies, and by using `+=`,
