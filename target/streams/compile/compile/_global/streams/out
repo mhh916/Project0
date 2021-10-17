@@ -1,4 +1,16 @@
-[0m[[0m[31merror[0m] [0m[0mC:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\src\main\scala\help\hotel.scala:52:29: value num is not a member of help.RoomNum[0m
-[0m[[0m[31merror[0m] [0m[0m        roomNum = resultDoc.num[0m
-[0m[[0m[31merror[0m] [0m[0m                            ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\src\main\scala\help\hotel.scala:110:17: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : String[0m
+[0m[[0m[31merror[0m] [0m[0m required: Int[0m
+[0m[[0m[31merror[0m] [0m[0m        checkIn(roomNum,custID,date,nights,bookingCollection,roomCollection)[0m
+[0m[[0m[31merror[0m] [0m[0m                ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\src\main\scala\help\hotel.scala:110:25: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : String[0m
+[0m[[0m[31merror[0m] [0m[0m required: Int[0m
+[0m[[0m[31merror[0m] [0m[0m        checkIn(roomNum,custID,date,nights,bookingCollection,roomCollection)[0m
+[0m[[0m[31merror[0m] [0m[0m                        ^[0m
+[0m[[0m[31merror[0m] [0m[0mC:\Users\M1\Desktop\Work\Rev\Scala Big Data\Scala Code\Project\Project0\src\main\scala\help\hotel.scala:110:37: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : String[0m
+[0m[[0m[31merror[0m] [0m[0m required: Int[0m
+[0m[[0m[31merror[0m] [0m[0m        checkIn(roomNum,custID,date,nights,bookingCollection,roomCollection)[0m
+[0m[[0m[31merror[0m] [0m[0m                                    ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m

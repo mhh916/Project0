@@ -25,6 +25,7 @@ class Hotel() {
       "roomId" -> room,
       "customerId" -> customerID,
       "bookingDate" -> bookingDate,
+      "nights" -> nights,
       "totalCharge" -> checkInHelper(room, nights, roomCollection)
     )
     
@@ -38,7 +39,7 @@ class Hotel() {
     
     // Update room to be occupied
     roomCollection.updateOne(equal("roomNumber", room), set("occupied", true)).printHeadResult("Room set to Occupied")
-    
+
   }
 
   def checkOut(customerID: Int, bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
@@ -51,7 +52,7 @@ class Hotel() {
         roomNum = resultDoc.roomId
     }
     bookingCollection.deleteOne(equal("customerId", customerID)).printHeadResult("Deleted: ")
-    roomCollection.updateOne(equal("roomNumber", 205), set("occupied", false)).printHeadResult("Updated: ")
+    roomCollection.updateOne(equal("roomNumber", roomNum), set("occupied", false)).printHeadResult("Updated: ")
 
 
 
@@ -101,38 +102,29 @@ class Hotel() {
     val bs = io.Source.fromFile("C:/Users/M1/Desktop/Work/Rev/Scala Big Data/Scala Code/Project/Project0/src/main/scala/sample.csv")
     for (line <- bs.getLines()) {
         val cols = line.split(",").map(_.trim)
-        var roomNum = cols(0)
-        println(roomNum)
-        //println(s"${cols(0)}|${cols(1)}|${cols(2)}")
-        val doc: Document = Document(
-          "roomId" -> cols(0),
-          "customerId" -> cols(1),
-          "bookingDate" -> cols(2),
-          "nights" -> cols(3)
-          //"totalCharge" -> checkInHelper(cols(0), cols(4))
-        )
-        //add booking to database
-        val observable: Observable[Completed] = bookingCollection.insertOne(doc)
-        observable.subscribe(new Observer[Completed] {
-          override def onNext(result: Completed): Unit = println("Adding Guests")
-          override def onError(e: Throwable): Unit = println("Failed")
-          override def onComplete(): Unit = println(s"Successfully imported online bookings")
-        })
-        
-        // Update room to be occupied
-        //roomCollection.find(equal("roomNumber",roomNum.toInt)).printResults()
-        roomCollection.updateOne(equal("roomNumber", roomNum.toInt), set("occupied", true)).printHeadResult("Updating Room to Occupied\n")
-    
-      
+        val roomNum = cols(0)
+        val custID = cols(1)
+        val date = cols(2)
+        val nights = cols(3)
+
+        checkIn(roomNum.toInt,custID.toInt,date,nights.toInt,bookingCollection,roomCollection)
     }
     
     bs.close()
 
-    println("Group registered successfully")
+    println("\nGroup registered successfully")
     println()
   }
-}
 
+
+  def viewGuestList(): Unit = {
+
+  }
+
+  def exportGuestList(): Unit = {
+    
+  }
+}
 case class Charge(totalCharge: Int)
 
 case class Price(price: Int)
