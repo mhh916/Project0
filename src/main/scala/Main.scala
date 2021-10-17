@@ -40,8 +40,6 @@ object Main {
 
         case 2 => {
           val id = readLine("Insert Customer ID: ")
-          val date = readLine("Insert Date: ")
-
           hotel.checkOut(id.toInt, db.getBookings(), db.getRooms())
         }
 

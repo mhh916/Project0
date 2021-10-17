@@ -37,15 +37,24 @@ class Hotel() {
         })
     
     // Update room to be occupied
-    roomCollection.updateOne(equal("roomNumber", room), set("occupied", true))
-
-   
+    roomCollection.updateOne(equal("roomNumber", room), set("occupied", true)).printHeadResult("Room set to Occupied")
     
- 
   }
 
   def checkOut(customerID: Int, bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
-    
+    var roomNum = 0
+    var results = bookingCollection.find(equal("customerId", customerID)).projection(fields(include("roomId"),excludeId())).results()
+    for(result <- results) {
+        val jsonString = result.toJson()
+        val jValue = parse(jsonString)
+        val resultDoc = jValue.extract[RoomNum]
+        roomNum = resultDoc.roomId
+    }
+    bookingCollection.deleteOne(equal("customerId", customerID)).printHeadResult("Deleted: ")
+    roomCollection.updateOne(equal("roomNumber", 205), set("occupied", false)).printHeadResult("Updated: ")
+
+
+
   }
 
   def checkInHelper(room: Int, nights: Int, roomCollection: MongoCollection[Document]): Int = {
@@ -86,7 +95,7 @@ class Hotel() {
   def checkRooms(roomCollection: MongoCollection[Document]): Unit = {
 
   }
-
+//work on import
   def importBookings(bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
     //println("RoomId, customerId, bookingDate, nights")
     val bs = io.Source.fromFile("C:/Users/M1/Desktop/Work/Rev/Scala Big Data/Scala Code/Project/Project0/src/main/scala/sample.csv")
@@ -127,3 +136,5 @@ class Hotel() {
 case class Charge(totalCharge: Int)
 
 case class Price(price: Int)
+
+case class RoomNum(roomId: Int)
