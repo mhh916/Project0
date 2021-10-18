@@ -57,9 +57,7 @@ object Main {
         }
 
         case 6 => {
-          println("Not yet implemented")
-          println()
-          Thread.sleep(500)
+          hotel.exportGuestList(db.getBookings(), db.getCustomers())
         }
 
         case 7 => {
