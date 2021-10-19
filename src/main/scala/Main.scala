@@ -1,4 +1,3 @@
-
 import scala.io.StdIn._
 import org.mongodb.scala._
 import help.Helpers._
@@ -10,10 +9,7 @@ object Main {
     var loop = true
     val hotel = new Hotel()
     val db = new DBConnect()
-    
-    
-
-      
+   
     do{
       
       println("Please select an option")
@@ -31,9 +27,7 @@ object Main {
           val room = readLine("Insert Room Number: ")
           println()
           // Passes values as parameters to checkIn function
-          hotel.checkIn(room.toInt, id.toInt, date, nights.toInt, db.getBookings(),db.getRooms())
-          //Thread.sleep(100)
-        
+          hotel.checkIn(room.toInt, id.toInt, date, nights.toInt, db.getBookings(),db.getRooms())        
         }
 
         case 2 => {
@@ -63,7 +57,8 @@ object Main {
         case 7 => {
           hotel.viewGuestList(db.getBookings(), db.getCustomers())
         }  
-        
+
+
         case 8 => {
           db.disconnect()
           loop = false
@@ -71,13 +66,10 @@ object Main {
       }
       }catch {
         case e: MatchError => println("Please pick a number between 1~8\n")
-        case e: NumberFormatException => println("\nPlease enter a number\n")
-        
+        case e: NumberFormatException => println("\nPlease enter a number\n") 
       }
       
     } while(loop) 
-
     println("Thank you for using Venom Corporation's Hotel Management System")
-    Thread.sleep(500)
   }
 }

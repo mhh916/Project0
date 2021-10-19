@@ -89,6 +89,7 @@ class Hotel() {
         newCharge = current + charge
     }
     bookingCollection.updateOne(equal("customerId", customerId), set("totalCharge", newCharge)).results()
+    println("Charged Successfully")
 
   }
 
@@ -127,7 +128,8 @@ class Hotel() {
   def viewGuestList(bookingCollection: MongoCollection[Document], customerCollection: MongoCollection[Document]): Unit = {
     var roomNum = 0
     var customerId = 0
-    var results = bookingCollection.find().projection(fields(include("roomId"), include("customerId"),excludeId())).results()
+    var totalCharge = 0
+    var results = bookingCollection.find().projection(fields(include("roomId"), include("customerId"), include("totalCharge"),excludeId())).results()
     println()
     for(result <- results) {
         val jsonString = result.toJson()
@@ -136,12 +138,13 @@ class Hotel() {
         val resultDoc = jValue.extract[Customer]
         roomNum = resultDoc.roomId
         customerId = resultDoc.customerId
+        totalCharge = resultDoc.totalCharge
         var results2 = customerCollection.find(equal("customerId", customerId)).projection(fields(include("name"),excludeId())).results()
             for(result2 <- results2){
                 val jsonString = result2.toJson()
                 val jValue = parse(parseJson(jsonString))
                 val resultDoc = jValue.extract[CustomerName]
-                println(s"Name: ${resultDoc.firstName} ${resultDoc.lastName}\n\t\t\tRoom: $roomNum    CustomerID: $customerId ")
+                println(s"Name: ${resultDoc.firstName} ${resultDoc.lastName}\n\t\t\tRoom: $roomNum    CustomerID: $customerId   Total Charge: $totalCharge")
                 
             }
 
@@ -154,11 +157,12 @@ class Hotel() {
     val fileObj = new File("Output.csv")
     val print_Writer = new PrintWriter(fileObj) 
     print_Writer.write("Name, CustomerID, Room")
-    
-   
+
     var roomNum = 0
     var customerId = 0
-    var results = bookingCollection.find().projection(fields(include("roomId"), include("customerId"),excludeId())).results()
+    var totalCharge = 0
+    var results = bookingCollection.find().projection(fields(include("roomId"), include("customerId"), include("totalCharge"), excludeId())).results()
+
     println()
     for(result <- results) {
         val jsonString = result.toJson()
@@ -167,17 +171,17 @@ class Hotel() {
         val resultDoc = jValue.extract[Customer]
         roomNum = resultDoc.roomId
         customerId = resultDoc.customerId
+        totalCharge = resultDoc.totalCharge
         var results2 = customerCollection.find(equal("customerId", customerId)).projection(fields(include("name"),excludeId())).results()
             for(result2 <- results2){
                 val jsonString = result2.toJson()
                 val jValue = parse(parseJson(jsonString))
                 val resultDoc = jValue.extract[CustomerName]
-                print_Writer.append(s"\n ${resultDoc.firstName} ${resultDoc.lastName}, $roomNum, $customerId")                
+                print_Writer.append(s"\n ${resultDoc.firstName} ${resultDoc.lastName}, $roomNum, $customerId, $totalCharge")                
             }
-
-
     }
      print_Writer.close() 
+     println("Exported Successfully")
   }
 
   def parseJson(j: String): String = {
@@ -186,10 +190,8 @@ class Hotel() {
   }
 }
 case class Charge(totalCharge: Int)
-
 case class Price(price: Int)
-
 case class RoomNum(roomId: Int)
 case class Rooms(roomNumber: Int, beds: Int, description: String, price: Int)
-case class Customer(roomId: Int, customerId: Int)
+case class Customer(roomId: Int, customerId: Int, totalCharge: Int)
 case class CustomerName(firstName: String, lastName: String)
