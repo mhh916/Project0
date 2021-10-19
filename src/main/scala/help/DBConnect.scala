@@ -36,8 +36,8 @@ class DBConnect() {
         client
     }
     def disconnect(): Unit = {
-        client.close()
         println("Closing database connection...\n ")
+        client.close()
     }
 
 

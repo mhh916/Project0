@@ -42,6 +42,7 @@ class Hotel() {
     
     // Update room to be occupied
     roomCollection.updateOne(equal("roomNumber", room), set("occupied", true)).results()
+    
 
   }
 
@@ -90,6 +91,7 @@ class Hotel() {
     }
     bookingCollection.updateOne(equal("customerId", customerId), set("totalCharge", newCharge)).results()
     println("Charged Successfully")
+    println()
 
   }
 
@@ -156,7 +158,7 @@ class Hotel() {
   def exportGuestList(bookingCollection: MongoCollection[Document], customerCollection: MongoCollection[Document]): Unit = {
     val fileObj = new File("Output.csv")
     val print_Writer = new PrintWriter(fileObj) 
-    print_Writer.write("Name, CustomerID, Room")
+    print_Writer.write("Name, CustomerID, Room, TotalCharge")
 
     var roomNum = 0
     var customerId = 0
@@ -182,6 +184,7 @@ class Hotel() {
     }
      print_Writer.close() 
      println("Exported Successfully")
+     println()
   }
 
   def parseJson(j: String): String = {
