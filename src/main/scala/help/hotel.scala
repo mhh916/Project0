@@ -45,24 +45,29 @@ class Hotel() {
     
 
   }
-
+  // Checks out a guest with  their given ID and updates their room to not be occupied
   def checkOut(customerID: Int, bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
     var roomNum = 0
+    // Finds document from bookings collection based on customer ID and projects to show only roomId
     var results = bookingCollection.find(equal("customerId", customerID)).projection(fields(include("roomId"),excludeId())).results()
+    // Loops through results grabbing the roomId
     for(result <- results) {
         val jsonString = result.toJson()
         val jValue = parse(jsonString)
         val resultDoc = jValue.extract[RoomNum]
         roomNum = resultDoc.roomId
     }
+    // Deletes the booking document based on customer ID
     bookingCollection.deleteOne(equal("customerId", customerID)).results()
+    // Sets room taken from booking document and sets occupied to false
     roomCollection.updateOne(equal("roomNumber", roomNum), set("occupied", false)).results()
     println("\nSuccessfully Checked Out\n")
   }
-
+  // Helper function designed to get price of room from room Collection and multiply it by the nights stayed
   def checkInHelper(room: Int, nights: Int, roomCollection: MongoCollection[Document]): Int = {
     var totalCharge: Int = 0
     var price: Int = 0
+    // extracts room price from room collection
     var results = roomCollection.find(equal("roomNumber", room)).projection(fields(include("price"),excludeId())).results()
     
     for(result <- results) {
@@ -75,13 +80,13 @@ class Hotel() {
     totalCharge
 
   }
-
+  // adds a charge amount to the property totalCharge in the booking document
   def chargeGuest(charge: Int, customerId: Int, bookingCollection: MongoCollection[Document]): Unit = {
     var current: Int = 0
     var newCharge: Int = 0
-    
+    // Gets document with specific customerId and projects only totalCharge property
     var results = bookingCollection.find(equal("customerId", customerId)).projection(fields(include("totalCharge"),excludeId())).results()
-    
+    // grabs old totalCharge and adds it to charge amount from input and creates new val newCharge as the sum
     for(result <- results) {
         val jsonString = result.toJson()
         val jValue = parse(jsonString)
@@ -89,13 +94,15 @@ class Hotel() {
         current = resultDoc.totalCharge.toInt
         newCharge = current + charge
     }
+    // Updates the same booking document with the new total Charge
     bookingCollection.updateOne(equal("customerId", customerId), set("totalCharge", newCharge)).results()
     println("Charged Successfully")
     println()
 
   }
-
+  // Goes through the room collection and outputs all unoccupied rooms
   def checkRooms(beds: Int, roomCollection: MongoCollection[Document]): Unit = {
+    // Gets all rooms that are not occupied with with the input amount of beds
     var results = roomCollection.find(and(equal("occupied", false),equal("beds", beds))).projection(fields(exclude("occupied"),excludeId())).results()
     for(result <- results) {
         val jsonString = result.toJson()
@@ -106,7 +113,7 @@ class Hotel() {
     }
     println()
   }
-
+  // import booking documents from sample.csv 
   def importBookings(bookingCollection: MongoCollection[Document], roomCollection: MongoCollection[Document]): Unit = {
     //println("RoomId, customerId, bookingDate, nights")
     val bs = io.Source.fromFile("C:/Users/M1/Desktop/Work/Rev/Scala Big Data/Scala Code/Project/Project0/src/main/scala/sample.csv")
@@ -116,7 +123,7 @@ class Hotel() {
         val custID = cols(1)
         val date = cols(2)
         val nights = cols(3)
-
+        //passes parsed data to the check in function
         checkIn(roomNum.toInt,custID.toInt,date,nights.toInt,bookingCollection,roomCollection)
     }
     
@@ -126,13 +133,15 @@ class Hotel() {
     println()
   }
 
-
+  // Shows current guest who occupy a room
   def viewGuestList(bookingCollection: MongoCollection[Document], customerCollection: MongoCollection[Document]): Unit = {
     var roomNum = 0
     var customerId = 0
     var totalCharge = 0
+    // First get roomId, customer ID and total Charge from all bookings 
     var results = bookingCollection.find().projection(fields(include("roomId"), include("customerId"), include("totalCharge"),excludeId())).results()
     println()
+    // Loop through results
     for(result <- results) {
         val jsonString = result.toJson()
         val jValue = parse(jsonString)
@@ -141,11 +150,13 @@ class Hotel() {
         roomNum = resultDoc.roomId
         customerId = resultDoc.customerId
         totalCharge = resultDoc.totalCharge
+        // grab documents from custoemr collection using properties obtained from the booking collections
         var results2 = customerCollection.find(equal("customerId", customerId)).projection(fields(include("name"),excludeId())).results()
             for(result2 <- results2){
                 val jsonString = result2.toJson()
                 val jValue = parse(parseJson(jsonString))
                 val resultDoc = jValue.extract[CustomerName]
+                // Output the results from both queries
                 println(s"Name: ${resultDoc.firstName} ${resultDoc.lastName}\n\t\t\tRoom: $roomNum    CustomerID: $customerId   Total Charge: $totalCharge")
                 
             }
@@ -154,7 +165,7 @@ class Hotel() {
     }
     println()
   }
-
+  // Export the current guest list into a new csv file
   def exportGuestList(bookingCollection: MongoCollection[Document], customerCollection: MongoCollection[Document]): Unit = {
     val fileObj = new File("Output.csv")
     val print_Writer = new PrintWriter(fileObj) 
@@ -186,7 +197,7 @@ class Hotel() {
      println("Exported Successfully")
      println()
   }
-
+  // Helper function for export/view guest list takes input json and outputs embedded document
   def parseJson(j: String): String = {
     val l = j.length()
     j.slice(8, l-1)

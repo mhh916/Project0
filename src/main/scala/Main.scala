@@ -31,35 +31,45 @@ object Main {
         }
 
         case 2 => {
+          // Generates values based on user input
           val id = readLine("Insert Customer ID: ")
+          // Passes values as parameters to checkOut function
           hotel.checkOut(id.toInt, db.getBookings(), db.getRooms())
         }
 
         case 3 => {
+          // Generates values based on user input
           val charge = readLine("Insert Charge Amount: ")
           val id = readLine("Insert Customer ID: ")
+          // Passes values as parameters to chargeGuest function
           hotel.chargeGuest(charge.toInt, id.toInt, db.getBookings())
         }
 
         case 4 => {
+          // Generates values based on user input
           val beds = readLine("Would you like 1 or 2 beds?: ")
+          // Passes values as parameters to checkRooms function
           hotel.checkRooms(beds.toInt, db.getRooms())
         }
 
          case 5 => {
+          // Uses getters from DBConnect to pass collections to importBookings
           hotel.importBookings(db.getBookings(), db.getRooms())
         }
 
         case 6 => {
+          // Uses getters from DBConnect to pass collections to exportGuestList
           hotel.exportGuestList(db.getBookings(), db.getCustomers())
         }
 
         case 7 => {
+          // Uses getters from DBConnect to pass collections to viewGuestList
           hotel.viewGuestList(db.getBookings(), db.getCustomers())
         }  
 
 
         case 8 => {
+          // Calls function from DBConnect Object to close client connection and ends loop
           db.disconnect()
           loop = false
         }
